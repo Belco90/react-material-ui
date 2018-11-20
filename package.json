@@ -1,7 +1,10 @@
 {
   "name": "react-material-ui",
+  "description": "Example built with React and Material-UI",
   "version": "0.1.0",
-  "private": true,
+  "repository": "https://github.com/Belco90/react-material-ui",
+  "homepage": "https://belco90.github.io/react-material-ui/",
+  "license": "MIT",
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -10,7 +13,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -21,5 +26,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
 }
