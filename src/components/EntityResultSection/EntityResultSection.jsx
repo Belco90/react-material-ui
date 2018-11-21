@@ -87,7 +87,7 @@ class EntityResultSection extends Component {
           {entity.map(slot => (
             <TableRow key={slot.id}>
               <TableCell>
-                <VisibilityChip />
+                <VisibilityChip isGroup={slot.visibility.group} />
                 {this.renderVisibilityButton(slot.visibility)}
               </TableCell>
               <TableCell>

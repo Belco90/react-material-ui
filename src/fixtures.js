@@ -20,6 +20,7 @@ export const fakeSlot1 = {
   id: '78',
   visibility: {
     editable: false,
+    group: true,
   },
   owner: fakeOwner1,
   creationDate: '2018-09-26 07:13:40',

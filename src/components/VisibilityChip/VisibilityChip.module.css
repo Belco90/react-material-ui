@@ -3,7 +3,19 @@
   border-radius: 25px;
 }
 
-.avatar.avatar {
+.lockAvatar.lockAvatar {
   height: 50px;
   width: 50px;
+  z-index: 5;
+}
+
+.groupAvatar.groupAvatar {
+  height: 50px;
+  width: 50px;
+  background-color: #394eff;
+  margin-left: -20px;
+}
+
+.counter {
+  margin-left: 10px;
 }
