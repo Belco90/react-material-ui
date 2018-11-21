@@ -7,8 +7,12 @@ import TableFooter from '@material-ui/core/TableFooter';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+
 import EntityResultSection from '../EntityResultSection';
-import { fakeResults } from '../../fixtures';
+import api from '../../api';
 
 import styles from './EntitySearchPanel.module.css';
 
@@ -23,16 +27,53 @@ const tableDivider = (
 );
 
 class EntitySearchPanel extends React.Component {
-
   state = {
     isLoading: false,
+    results: null,
+  };
+
+  componentDidMount() {
+    this.fetchResults();
+  }
+
+  fetchResults() {
+    this.setState({ isLoading: true, results: null });
+
+    api.readEntities().then(results => {
+      this.setState({ isLoading: false, results });
+    });
+  }
+
+  handleDetailsClick = () => {
+    alert('Details button clicked');
+  };
+
+  handleAddClick = () => {
+    alert('Add button clicked');
+  };
+
+  handleStartNewClick = () => {
+    this.fetchResults();
   };
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, results } = this.state;
 
     if (isLoading) {
-      return 'Loading...';
+      return (
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <CircularProgress color="secondary" size={70} />
+        </Grid>
+      );
+    }
+
+    if (!results) {
+      return 'No results found';
     }
 
     return (
@@ -47,23 +88,40 @@ class EntitySearchPanel extends React.Component {
             <TableRow>
               <TableCell>IP Results for 1.1.1.1</TableCell>
               <TableCell colSpan={MAX_CELLS - 1} className="text-right">
-                <Button>Add</Button>
-                <Button color="primary">Start new</Button>
+                <Button onClick={this.handleAddClick}>Add</Button>
+                <Button color="primary" onClick={this.handleStartNewClick}>
+                  Start new
+                </Button>
               </TableCell>
             </TableRow>
           </TableBody>
 
-          {fakeResults.map((result, idx) => (
+          {results && results.map((result, idx) => (
             <React.Fragment key={idx}>
               {tableDivider}
               <EntityResultSection entity={result} />
             </React.Fragment>
           ))}
 
+          {!results && (
+            <TableBody>
+              <TableRow>
+                <TableCell colSpan={MAX_CELLS}>
+                  <Typography variant="h6">No results found</Typography>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          )}
+
           <TableFooter>
             <TableRow>
               <TableCell colSpan={MAX_CELLS} className={styles.footerButtonGroup}>
-                <Button color="primary" variant="contained" size="large">
+                <Button
+                  color="primary"
+                  variant="contained"
+                  size="large"
+                  onClick={this.handleDetailsClick}
+                >
                   View Graph Search details
                 </Button>
               </TableCell>

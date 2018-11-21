@@ -41,6 +41,10 @@ class EntityResultSection extends Component {
     );
   }
 
+  handleOpenClick = id => {
+    alert(`Open button clicked for ${id}`);
+  };
+
   render() {
     const { entity } = this.props;
 
@@ -74,7 +78,9 @@ class EntityResultSection extends Component {
                 <Typography variant="subtitle1">{slot.description}</Typography>
               </TableCell>
               <TableCell className="text-right">
-                <Button>Open</Button>
+                <Button onClick={() => this.handleOpenClick(slot.id)}>
+                  Open
+                </Button>
               </TableCell>
             </TableRow>
           ))}
