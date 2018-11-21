@@ -10,3 +10,12 @@
   height: 50px;
   width: 50px;
 }
+
+.visibilityButtonWrapper.visibilityButtonWrapper {
+  border-right: solid 2px #f6f6f6;
+}
+
+.visibilityButton.visibilityButton {
+margin-left: 5px;
+margin-right: 5px;
+}

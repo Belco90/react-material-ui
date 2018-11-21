@@ -5,8 +5,13 @@ import TableRow from '@material-ui/core/TableRow/TableRow';
 import TableCell from '@material-ui/core/TableCell/TableCell';
 import TableBody from '@material-ui/core/TableBody/TableBody';
 import Button from '@material-ui/core/Button/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
+
+import VisibilityChip from '../VisibilityChip';
 
 import styles from './EntityResultSection.module.css';
 
@@ -19,7 +24,7 @@ const userPropTypes = PropTypes.shape({
 const slotPropTypes = PropTypes.shape({
   id: PropTypes.string,
   shared: PropTypes.bool,
-  visibility: PropTypes.string,
+  visibility: PropTypes.object,
   owner: userPropTypes,
   creationDate: PropTypes.string,
   description: PropTypes.string,
@@ -34,9 +39,9 @@ class EntityResultSection extends Component {
     const [date, time] = datetime.split(' ');
     return (
       <Typography variant="subtitle1" className={styles.creationDate}>
-          {date}
-          <br />
-          <span className={styles.time}>{time}</span>
+        {date}
+        <br />
+        <span className={styles.time}>{time}</span>
       </Typography>
     );
   }
@@ -44,6 +49,24 @@ class EntityResultSection extends Component {
   handleOpenClick = id => {
     alert(`Open button clicked for ${id}`);
   };
+
+  handleVisibilityClick = () => {
+    alert('Visibility button clicked');
+  };
+
+  renderVisibilityButton(options) {
+    return (
+      <span className={styles.visibilityButtonWrapper}>
+        <IconButton onClick={this.handleVisibilityClick} className={styles.visibilityButton}>
+          {options.editable ? (
+            <CreateOutlinedIcon />
+          ) : (
+            <VisibilityOutlinedIcon />
+          )}
+        </IconButton>
+      </span>
+    );
+  }
 
   render() {
     const { entity } = this.props;
@@ -63,7 +86,10 @@ class EntityResultSection extends Component {
         <TableBody>
           {entity.map(slot => (
             <TableRow key={slot.id}>
-              <TableCell>{slot.visibility}</TableCell>
+              <TableCell>
+                <VisibilityChip />
+                {this.renderVisibilityButton(slot.visibility)}
+              </TableCell>
               <TableCell>
                 <Avatar
                   className={styles.avatar}

@@ -18,7 +18,9 @@ export const fakeOwner3 = {
 
 export const fakeSlot1 = {
   id: '78',
-  visibility: 'foo',
+  visibility: {
+    editable: false,
+  },
   owner: fakeOwner1,
   creationDate: '2018-09-26 07:13:40',
   description: 'WannaCry',
@@ -26,7 +28,9 @@ export const fakeSlot1 = {
 
 export const fakeSlot2 = {
   id: '34',
-  visibility: 'bar',
+  visibility: {
+    editable: false,
+  },
   owner: fakeOwner2,
   creationDate: '2018-09-26 07:13:40',
   description: 'Pro investigations',
@@ -34,7 +38,9 @@ export const fakeSlot2 = {
 
 export const fakeSlot3 = {
   id: '999',
-  visibility: 'baz',
+  visibility: {
+    editable: true,
+  },
   owner: fakeOwner3,
   creationDate: '2018-09-26 07:13:40',
   description: 'Lore ipsum investigations',

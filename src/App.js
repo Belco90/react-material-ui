@@ -18,7 +18,7 @@ const App = () => (
     <MainBar />
     <Grid
       container
-      spacing={40}
+      spacing={0}
       justify="center"
       alignItems="center"
       className={styles.mainGrid}
