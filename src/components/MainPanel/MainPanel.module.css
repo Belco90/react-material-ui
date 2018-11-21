@@ -1,0 +1,22 @@
+.root {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.textRight.textRight {
+  text-align: right;
+}
+
+.slim.slim {
+  height: 30px;
+}
+
+.footerButtonGroup.footerButtonGroup {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footerButtonGroup button {
+  text-transform: none;
+}

@@ -11,7 +11,7 @@ import styles from './MainBar.module.css';
 
 const MainBar = () => (
   <div className={styles.root}>
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
         <IconButton className={styles.menuButton} color="inherit" aria-label="Menu">
           <MenuIcon />
