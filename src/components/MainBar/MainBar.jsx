@@ -17,7 +17,7 @@ const MainBar = () => (
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" color="inherit" className={styles.grow}>
-          React ❤️ Material Design
+          React <span>❤</span>️ Material Design
         </Typography>
         <Button color="inherit"><AccountCircle /></Button>
       </Toolbar>
